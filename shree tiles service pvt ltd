@@ -1,0 +1,122 @@
+import React, { useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Phone, MessageCircle, MapPin } from "lucide-react";
+
+export default function ShreeTilesWebsite() {
+  const [lang, setLang] = useState("en");
+
+  const content = {
+    en: {
+      company: "Shree Tiles Service Pvt. Ltd.",
+      tagline: "Premium Tiles on Easy Installments & Direct Purchase",
+      aboutTitle: "About Us",
+      aboutText:
+        "Shree Tiles Service Pvt. Ltd. provides high-quality wall and floor tiles in Balaghat (Awalazari). Customers can purchase tiles directly or through easy monthly installments using our credit card facility.",
+      servicesTitle: "Our Services",
+      services: [
+        "Wall & Floor Tiles",
+        "Easy EMI / Installment Facility",
+        "Bulk Supply for Contractors",
+        "Retail & Wholesale Options",
+      ],
+      contactTitle: "Contact Us",
+      location: "Awalazari, Balaghat, Madhya Pradesh",
+      call: "Call Now",
+      whatsapp: "WhatsApp",
+      buy: "Buy / Enquiry",
+    },
+    hi: {
+      company: "श्री टाइल्स सर्विस प्रा. लि.",
+      tagline: "आसान किस्तों पर प्रीमियम टाइल्स",
+      aboutTitle: "हमारे बारे में",
+      aboutText:
+        "श्री टाइल्स सर्विस प्रा. लि. बालाघाट (आवलाजरी) में उच्च गुणवत्ता वाली वॉल और फ्लोर टाइल्स उपलब्ध कराती है। ग्राहक सीधे खरीद सकते हैं या आसान मासिक किस्तों में ले सकते हैं।",
+      servicesTitle: "हमारी सेवाएँ",
+      services: [
+        "वॉल और फ्लोर टाइल्स",
+        "आसान EMI / किस्त सुविधा",
+        "ठेकेदारों के लिए बल्क सप्लाई",
+        "रिटेल और होलसेल विकल्प",
+      ],
+      contactTitle: "संपर्क करें",
+      location: "आवलाजरी, बालाघाट, मध्य प्रदेश",
+      call: "कॉल करें",
+      whatsapp: "व्हाट्सएप",
+      buy: "खरीदें / पूछताछ",
+    },
+  };
+
+  const t = content[lang];
+
+  return (
+    <div className="min-h-screen bg-gray-50 text-gray-800">
+      {/* Header */}
+      <header className="bg-white shadow-md p-4 flex justify-between items-center">
+        <h1 className="text-xl font-bold">{t.company}</h1>
+        <Button
+          variant="outline"
+          onClick={() => setLang(lang === "en" ? "hi" : "en")}
+        >
+          {lang === "en" ? "हिंदी" : "English"}
+        </Button>
+      </header>
+
+      {/* Hero Section */}
+      <section className="text-center py-16 bg-gradient-to-r from-gray-200 to-gray-100">
+        <h2 className="text-3xl font-bold mb-4">{t.tagline}</h2>
+        <div className="flex justify-center gap-4 mt-6">
+          <Button className="rounded-2xl shadow-md">
+            <Phone className="mr-2 h-4 w-4" /> {t.call}
+          </Button>
+          <Button className="rounded-2xl shadow-md">
+            <MessageCircle className="mr-2 h-4 w-4" /> {t.whatsapp}
+          </Button>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section className="py-12 px-6 max-w-4xl mx-auto">
+        <h3 className="text-2xl font-semibold mb-4">{t.aboutTitle}</h3>
+        <p className="text-base leading-relaxed">{t.aboutText}</p>
+      </section>
+
+      {/* Services Section */}
+      <section className="py-12 px-6 bg-white">
+        <h3 className="text-2xl font-semibold text-center mb-8">
+          {t.servicesTitle}
+        </h3>
+        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          {t.services.map((service, index) => (
+            <Card key={index} className="rounded-2xl shadow-lg">
+              <CardContent className="p-6 text-center">
+                <p className="text-lg font-medium">{service}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section className="py-12 px-6 max-w-4xl mx-auto">
+        <h3 className="text-2xl font-semibold mb-6">{t.contactTitle}</h3>
+        <div className="flex items-center gap-3 mb-4">
+          <MapPin className="h-5 w-5" />
+          <span>{t.location}</span>
+        </div>
+        <div className="flex gap-4">
+          <Button className="rounded-2xl shadow-md">{t.call}</Button>
+          <Button className="rounded-2xl shadow-md">{t.whatsapp}</Button>
+          <Button className="rounded-2xl shadow-md">{t.buy}</Button>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-800 text-white text-center p-4 mt-10">
+        <p>
+          © {new Date().getFullYear()} {t.company}. All Rights Reserved.
+        </p>
+      </footer>
+    </div>
+  );
+}
